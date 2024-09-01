@@ -7,7 +7,7 @@
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "sass"
+          "style": "scss"
         }
       },
       "root": "",
@@ -21,10 +21,11 @@
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
-              "zone.js"
+              "zone.js",
+              "@angular/localize/init"
             ],
             "tsConfig": "tsconfig.app.json",
-            "inlineStyleLanguage": "sass",
+            "inlineStyleLanguage": "scss",
             "assets": [
               {
                 "glob": "**/*",
@@ -32,7 +33,8 @@
               }
             ],
             "styles": [
-              "src/styles.sass"
+              "@angular/material/prebuilt-themes/azure-blue.css",
+              "src/styles.scss"
             ],
             "scripts": [],
             "server": "src/main.server.ts",
@@ -85,10 +87,11 @@
           "options": {
             "polyfills": [
               "zone.js",
-              "zone.js/testing"
+              "zone.js/testing",
+              "@angular/localize/init"
             ],
             "tsConfig": "tsconfig.spec.json",
-            "inlineStyleLanguage": "sass",
+            "inlineStyleLanguage": "scss",
             "assets": [
               {
                 "glob": "**/*",
@@ -96,12 +99,16 @@
               }
             ],
             "styles": [
-              "src/styles.sass"
+              "@angular/material/prebuilt-themes/azure-blue.css",
+              "src/styles.scss"
             ],
             "scripts": []
           }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "b2e70422-7a60-43e9-abe6-bd366e00a5f5"
   }
 }

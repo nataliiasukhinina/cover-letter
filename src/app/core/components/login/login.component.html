@@ -1,0 +1,92 @@
+<div class="row justify-content-center mt-5">
+    <div class="col-12 col-lg-6">
+      <div class="alert alert-info">
+        <p><mat-icon class="align-bottom" fontIcon="info"></mat-icon> This form was created as a Reactive Angular Form. It implements built-in and custom validators.</p>
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-center align-middle mt-5">
+    <div class="col-12">
+      <form [formGroup]="loginForm" (ngSubmit)="onFormSubmit()" class="row">
+  
+        <div class="col-11 my-2">
+  
+          <mat-form-field>
+            <mat-label>Username</mat-label>
+            <input formControlName="username" matInput placeholder="Enter username">
+            <mat-icon matSuffix fontIcon="person"></mat-icon>
+            <mat-hint>Please enter your username (letters only).</mat-hint>
+            <mat-error *ngIf="hasError('username', 'required')">This field is required.</mat-error>
+            <mat-error *ngIf="hasError('username', 'pattern')">This field can only accept letters.</mat-error>
+          </mat-form-field>
+  
+        </div>
+        <div class="col-1">
+          <button type="button"
+                mat-icon-button
+                matTooltip="This field is required and restricted to accept letters only. Validation update happens only after the user submits the form. Different validation error messages are shown depending on what validation requirement was not met."
+                aria-label="Icon that displays a tooltip wth the field description">
+            <mat-icon>info</mat-icon>
+          </button>
+        </div>
+  
+        <div class="col-11 my-2">
+          <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input formControlName="password" matInput placeholder="Enter password" [type]="hidePassword ? 'password' : 'text'">
+            <button type="button" mat-icon-button matSuffix (click)="hidePassword = !hidePassword">
+              <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <mat-hint>Message me on <a href="https://www.linkedin.com/in/natashasukhinina/" target="_blank">LinkedIn</a> to get the password.</mat-hint>
+            <mat-error *ngIf="hasError('password', 'required')">This field is required.</mat-error>
+          </mat-form-field>
+        </div>
+  
+        <div class="col-1">
+          <button type="button" mat-icon-button
+                  matTooltip="This field is required and can accept any character. Validation update happens when the user clicks outside the field."
+                  aria-label="Icon that displays a tooltip wth the field description">
+            <mat-icon fontIcon="info"></mat-icon>
+          </button>
+        </div>
+  
+        <div class="col-11 my-2">
+          <mat-form-field>
+            <mat-label>Confirm Password</mat-label>
+            <input formControlName="confirmPassword" matInput placeholder="Confirm password" [type]="hideConfirmPassword ? 'password' : 'text'">
+            <button type="button" mat-icon-button matSuffix (click)="hideConfirmPassword = !hideConfirmPassword">
+              <mat-icon>{{hideConfirmPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <mat-hint>Please enter the password one more time.</mat-hint>
+            <mat-error *ngIf="hasError('confirmPassword', 'required')">This field is required.</mat-error>
+          </mat-form-field>
+        </div>
+  
+        <div class="col-1">
+          <button type="button" mat-icon-button
+                  matTooltip="This field is required. Validation update happens when the user clicks outside the field. Custom validator was created for this field to check if it matches the Password field."
+                  aria-label="Icon that displays a tooltip wth the field description">
+            <mat-icon fontIcon="info"></mat-icon>
+          </button>
+        </div>
+  
+        <div class="col-12 my-2" *ngIf="loginForm.hasError('noMatch')">
+          <div class="alert alert-danger">
+            <p>The Password and Confirm Password fields do not match. Please re-enter and try again.</p>
+          </div>
+        </div>
+  
+        <div class="col-12 my-2">
+          <button class="btn btn-success float-end" type="submit" aria-label="Submit form">Submit</button>
+        </div>
+      </form>
+  
+      <div class="row justify-content-center" *ngIf="loading">
+        <div class="col-2">
+          <mat-spinner></mat-spinner>
+        </div>
+      </div>
+  
+    </div>
+  </div>
+  
